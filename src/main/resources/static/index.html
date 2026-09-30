@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f7fb">
+  <title>Recargas | Panel</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <a class="brand" href="#inicio"><span class="brand-mark">R</span><span>recargas<small>Panel de gestión</small></span></a>
+      <div class="nav-label">MENÚ</div>
+      <nav aria-label="Navegación principal">
+        <a class="nav-link active" href="#inicio"><span>▦</span> Resumen</a>
+        <a class="nav-link" href="#nueva-recarga"><span>＋</span> Nueva recarga</a>
+        <a class="nav-link" href="#catalogos"><span>♙</span> Usuarios y operadores</a>
+      </nav>
+      <div class="sidebar-note"><span class="status-dot"></span> Sistema conectado</div>
+    </aside>
+    <main id="inicio" class="main-content">
+      <header class="topbar"><div><span class="eyebrow">GESTIÓN DE SERVICIO</span><h1>Panel de recargas</h1></div><button id="refresh-button" class="button button-light" type="button">↻ <span>Actualizar datos</span></button></header>
+      <section class="welcome"><div><p class="eyebrow">OPERACIÓN DIARIA</p><h2>Hola, bienvenido</h2><p>Registra recargas y consulta la actividad reciente desde un solo lugar.</p></div><div class="welcome-icon" aria-hidden="true">↗</div></section>
+      <section class="stats" aria-label="Resumen"><article class="stat-card"><span class="stat-icon violet">↗</span><div><p>Recargas registradas</p><strong id="total-recharges">—</strong></div></article><article class="stat-card"><span class="stat-icon blue">♙</span><div><p>Usuarios</p><strong id="total-users">—</strong></div></article><article class="stat-card"><span class="stat-icon green">▣</span><div><p>Operadores</p><strong id="total-operators">—</strong></div></article></section>
+      <section id="nueva-recarga" class="panel">
+        <div class="panel-heading"><div><p class="eyebrow">NUEVA OPERACIÓN</p><h2>Registrar recarga</h2><p class="muted">Completa los datos para crear una recarga.</p></div><span class="step-badge">01</span></div>
+        <form id="recharge-form" novalidate>
+          <div class="form-grid">
+            <label class="field"><span>Número de teléfono <b>*</b></span><input id="phone" name="numero" type="tel" inputmode="numeric" autocomplete="tel" placeholder="Ej. 3001234567" maxlength="15" required><small>Ingresa entre 7 y 15 dígitos, sin espacios ni símbolos.</small><span class="error" id="phone-error"></span></label>
+            <label class="field"><span>Valor de la recarga <b>*</b></span><div class="input-prefix"><span>$</span><input id="amount" name="valor" type="number" inputmode="decimal" min="1" step="0.01" placeholder="0.00" required></div><small>El valor debe ser un número mayor que cero.</small><span class="error" id="amount-error"></span></label>
+            <label class="field"><span>Usuario <b>*</b></span><select id="user-select" required><option value="">Selecciona un usuario</option></select><small>Selecciona quién solicita la recarga.</small><span class="error" id="user-error"></span></label>
+            <label class="field"><span>Operador <b>*</b></span><select id="operator-select" required><option value="">Selecciona un operador</option></select><small>Selecciona la compañía telefónica.</small><span class="error" id="operator-error"></span></label>
+          </div>
+          <div class="form-footer"><span class="required-note">* Campos obligatorios</span><button class="button button-primary" type="submit">Registrar recarga <span>→</span></button></div>
+          <div id="recharge-message" class="message" role="status" aria-live="polite"></div>
+        </form>
+      </section>
+      <section id="catalogos" class="catalog-grid">
+        <article class="panel compact-panel"><div class="panel-heading"><div><p class="eyebrow">CATÁLOGO</p><h2>Usuarios</h2><p class="muted">Agrega personas que pueden solicitar recargas.</p></div><span class="catalog-icon violet">♙</span></div><form id="user-form" class="inline-form" novalidate><label class="field"><span>Nombre del usuario <b>*</b></span><input id="user-name" type="text" maxlength="80" placeholder="Ej. María Pérez" required><span class="error" id="user-name-error"></span></label><button class="button button-secondary" type="submit">Agregar usuario</button><div id="user-message" class="message" role="status" aria-live="polite"></div></form><ul id="user-list" class="entity-list"></ul></article>
+        <article class="panel compact-panel"><div class="panel-heading"><div><p class="eyebrow">CATÁLOGO</p><h2>Operadores</h2><p class="muted">Administra los operadores disponibles.</p></div><span class="catalog-icon blue">▣</span></div><form id="operator-form" class="inline-form" novalidate><label class="field"><span>Nombre del operador <b>*</b></span><input id="operator-name" type="text" maxlength="80" placeholder="Ej. Movistar" required><span class="error" id="operator-name-error"></span></label><button class="button button-secondary" type="submit">Agregar operador</button><div id="operator-message" class="message" role="status" aria-live="polite"></div></form><ul id="operator-list" class="entity-list"></ul></article>
+      </section>
+      <section class="panel history-panel"><div class="panel-heading history-heading"><div><p class="eyebrow">MOVIMIENTOS</p><h2>Recargas recientes</h2><p class="muted">Últimas recargas registradas en el sistema.</p></div><span class="step-badge">HISTORIAL</span></div><div class="table-wrap"><table><thead><tr><th>Teléfono</th><th>Usuario</th><th>Operador</th><th>Fecha</th><th class="align-right">Valor</th></tr></thead><tbody id="recharge-list"><tr><td colspan="5" class="empty-state">Cargando recargas…</td></tr></tbody></table></div></section>
+      <footer class="page-footer">Panel de gestión de recargas</footer>
+    </main>
+  </div>
+  <script src="/app.js" defer></script>
+</body>
+</html>
