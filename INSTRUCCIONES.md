@@ -50,11 +50,18 @@ En `src/main/resources/application.properties` la configuración predeterminada 
 
 ```properties
 spring.datasource.url=jdbc:postgresql://localhost:5432/recargas_db
-spring.datasource.username=postgres
-spring.datasource.password=root
+spring.datasource.username=${DB_USERNAME:postgres}
+spring.datasource.password=${DB_PASSWORD}
 ```
 
-Si tu usuario, contraseña, servidor o puerto de PostgreSQL son distintos, actualiza esas propiedades antes de iniciar la aplicación.
+La contraseña se lee de la variable de entorno `DB_PASSWORD` y no se guarda en el repositorio. En PowerShell, configura las variables antes de iniciar:
+
+```powershell
+$env:DB_USERNAME = "postgres"
+$env:DB_PASSWORD = "tu_contraseña"
+```
+
+Si tu servidor, puerto, usuario o base de datos son distintos, actualiza las propiedades correspondientes.
 
 ## Iniciar la aplicación
 

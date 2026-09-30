@@ -4,6 +4,19 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+# Archivos locales y credenciales
+.env
+.env.*
+!.env.example
+*.log
+*.tmp
+*.swp
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+Desktop.ini
+
 ### STS ###
 .apt_generated
 .classpath
